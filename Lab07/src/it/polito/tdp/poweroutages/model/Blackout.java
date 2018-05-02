@@ -1,18 +1,22 @@
 package it.polito.tdp.poweroutages.model;
 
-import java.sql.Date;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class Blackout {
 	
 	
 	private int id, numeroPersone;
-	private Date dataInizio, dataFine;
+	private LocalDateTime dataInizio, dataFine;
+	private long durata;
 	
-	public Blackout(int id, int numeroPersone, Date dataInizio, Date dataFine) {
+	public Blackout(int id, int numeroPersone, LocalDateTime dataInizio, LocalDateTime dataFine) {
 		this.id = id;
 		this.numeroPersone = numeroPersone;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
+		
+		this.durata = Duration.between(dataInizio, dataFine).toHours();
 	}
 
 	public int getId() {
@@ -23,14 +27,26 @@ public class Blackout {
 		return numeroPersone;
 	}
 
-	public Date getDataInizio() {
+	public LocalDateTime getDataInizio() {
 		return dataInizio;
 	}
 
-	public Date getDataFine() {
+	public LocalDateTime getDataFine() {
 		return dataFine;
 	}
 
+	public long getDurata() {
+		return durata;
+	}
+
+	public String toString() {
+		return ""+dataInizio + " "
+				+ dataFine + " " + durata + " " + numeroPersone;
+	}
+	
+
+	
+	
 	
 
 }

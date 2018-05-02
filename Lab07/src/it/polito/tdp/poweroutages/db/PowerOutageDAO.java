@@ -50,8 +50,8 @@ public class PowerOutageDAO {
 			ResultSet res = st.executeQuery();
 
 			while (res.next()) {
-				Blackout b = new Blackout(res.getInt("id"), res.getInt("customers_affected"), res.getDate("date_event_began"),
-										  res.getDate("date_event_finished"));
+				Blackout b = new Blackout(res.getInt("id"), res.getInt("customers_affected"), res.getTimestamp("date_event_began").toLocalDateTime(),
+										  res.getTimestamp("date_event_finished").toLocalDateTime());
 				blackoutList.add(blackoutmap.get(b));
 			}
 
